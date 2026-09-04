@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: creditflow-api
+    env: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: free
+    healthCheckPath: /salud
+    envVars:
+      - key: RUTA_REGISTRO
+        value: /app/registro/registro_predicciones.csv
