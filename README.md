@@ -1,8 +1,3 @@
-<!--
-PENDIENTE: completar [URL_STREAMLIT] en "Demo en vivo" una vez desplegado el
-dashboard en Streamlit Community Cloud. Borrar este comentario antes de commitear.
--->
-
 <div align="center">
 
 # 💳 CreditFlow
@@ -62,7 +57,7 @@ Lo que más aprendí: un modelo con recall de 25% sigue siendo útil — como **
 ## 🚀 Demo en vivo
 
 - **API (FastAPI):** [creditflow-api.onrender.com/docs](https://creditflow-api.onrender.com/docs)
-- **Dashboard (Streamlit):** [URL_STREAMLIT]
+- **Dashboard (Streamlit):** [creditflowow.streamlit.app](https://creditflowow.streamlit.app/)
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Juanma-Alvarado/CreditFlow)
 
