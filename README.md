@@ -1,10 +1,6 @@
 <!--
-CÓMO USAR ESTE ARCHIVO
-1. Reemplazá el README.md del repo por el contenido de abajo.
-2. Completá [URL_STREAMLIT] en "Demo en vivo" una vez que despliegues el
-   dashboard en Streamlit Community Cloud. [URL_RENDER] ya se completa solo
-   apenas termine el deploy de la API en Render (avisame la URL y lo actualizo).
-3. Borrá este comentario antes de commitear.
+PENDIENTE: completar [URL_STREAMLIT] en "Demo en vivo" una vez desplegado el
+dashboard en Streamlit Community Cloud. Borrar este comentario antes de commitear.
 -->
 
 <div align="center">
@@ -65,7 +61,7 @@ Lo que más aprendí: un modelo con recall de 25% sigue siendo útil — como **
 
 ## 🚀 Demo en vivo
 
-- **API (FastAPI):** [URL_RENDER]/docs
+- **API (FastAPI):** [creditflow-api.onrender.com/docs](https://creditflow-api.onrender.com/docs)
 - **Dashboard (Streamlit):** [URL_STREAMLIT]
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Juanma-Alvarado/CreditFlow)
