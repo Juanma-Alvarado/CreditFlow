@@ -2,7 +2,7 @@
 model_monitoring.py
 
 Trabajo de monitoreo y detección de *data drift* del modelo de riesgo
-crediticio (PIM5).
+crediticio de CreditFlow.
 
 Correr:
     cd src
@@ -607,7 +607,7 @@ def generar_recomendaciones(
 
 def main():
     print("=" * 78)
-    print("MONITOREO DE DATA DRIFT — Modelo de Riesgo Crediticio")
+    print("MONITOREO DE DATA DRIFT — CreditFlow")
     print("=" * 78)
 
     tabla = generar_tabla_predicciones(forzar=True)

@@ -1,7 +1,7 @@
 """
 model_deploy.py
 
-API REST que expone el modelo de riesgo crediticio (PIM5) con FastAPI.
+API REST de CreditFlow que expone el modelo de riesgo crediticio con FastAPI.
 
 Levantar en local:
     cd src
@@ -79,7 +79,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="API de Riesgo Crediticio — PIM5",
+    title="CreditFlow — API de Riesgo Crediticio",
     description=(
         "Estima la probabilidad de que un cliente **no pague a tiempo** un "
         "crédito, a partir de información disponible en el momento de la "

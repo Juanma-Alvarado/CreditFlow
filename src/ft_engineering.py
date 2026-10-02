@@ -1,7 +1,7 @@
 """
 ft_engineering.py
 
-Pipeline de Feature Engineering para el modelo de riesgo crediticio (PIM5).
+Pipeline de Feature Engineering para el modelo de riesgo crediticio de CreditFlow.
 
 El objetivo final del modelo es predecir `Pago_atiempo`
 (1 = paga a tiempo, 0 = no paga a tiempo / mora), por lo que las decisiones

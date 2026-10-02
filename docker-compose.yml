@@ -1,4 +1,4 @@
-# Orquestación del modelo de riesgo crediticio (PIM5).
+# Orquestación del modelo de riesgo crediticio de CreditFlow.
 #
 # Levantar todo:
 #     docker compose up --build

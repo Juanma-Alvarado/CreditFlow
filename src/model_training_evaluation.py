@@ -2,7 +2,7 @@
 model_training_evaluation.py
 
 Entrenamiento y evaluación de modelos supervisados para el modelo de riesgo
-crediticio (PIM5).
+crediticio de CreditFlow.
 
 Consume el set ya transformado por `ft_engineering.py`, entrena varios
 modelos candidatos, los compara con validación cruzada estratificada y
