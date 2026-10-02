@@ -1,4 +1,4 @@
-# Integración continua del modelo de riesgo crediticio (PIM5).
+# Integración continua del modelo de riesgo crediticio de CreditFlow.
 #
 # No basta con verificar que la imagen se construye: un build puede compilar
 # perfectamente y devolver 500 al predecir, que es justo lo que pasaría si una

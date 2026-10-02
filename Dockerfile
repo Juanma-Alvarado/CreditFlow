@@ -1,4 +1,4 @@
-# Imagen del modelo de riesgo crediticio (PIM5).
+# Imagen del modelo de riesgo crediticio de CreditFlow.
 #
 # Una sola imagen sirve los dos procesos: la API de FastAPI y la app de
 # Streamlit. Comparten el mismo código y el mismo modelo; lo único que cambia

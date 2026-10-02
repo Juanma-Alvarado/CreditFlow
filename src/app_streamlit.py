@@ -1,7 +1,7 @@
 """
 app_streamlit.py
 
-Aplicación web del modelo de riesgo crediticio (PIM5).
+Aplicación web de CreditFlow: modelo de riesgo crediticio.
 
 Correr (con la API ya levantada):
     cd src
@@ -62,7 +62,7 @@ RUTA_DRIFT_TEMPORAL = DIRECTORIO_SRC / "drift_temporal.csv"
 EMOJI_SEMAFORO = {"verde": "🟢", "amarillo": "🟡", "rojo": "🔴", "sin_dato": "⚪"}
 
 st.set_page_config(
-    page_title="Riesgo Crediticio — PIM5", page_icon="🏦", layout="wide"
+    page_title="CreditFlow — Riesgo Crediticio", page_icon="🏦", layout="wide"
 )
 
 
@@ -578,8 +578,8 @@ def pantalla_monitoreo():
 
 # Navegación
 def main():
-    st.sidebar.title("🏦 Riesgo Crediticio")
-    st.sidebar.caption("Proyecto Integrador Módulo 5 — PIM5")
+    st.sidebar.title("🏦 CreditFlow")
+    st.sidebar.caption("Scoring y monitoreo de riesgo crediticio")
 
     pantalla = st.sidebar.radio(
         "Pantalla", ["Scoring de solicitudes", "Monitoreo de data drift"]
