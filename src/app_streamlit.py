@@ -31,6 +31,7 @@ import os
 import sys
 from datetime import date, datetime
 from pathlib import Path
+from urllib.parse import urlparse
 
 import altair as alt
 import pandas as pd
@@ -54,6 +55,10 @@ from model_monitoring import (  # noqa: E402
 )
 
 API_URL = os.getenv("API_URL", "http://localhost:8000").rstrip("/")
+# Una API local se levanta a mano; una desplegada (Render, plan gratuito) se
+# duerme tras inactividad y tarda hasta un minuto en despertar.
+API_LOCAL = urlparse(API_URL).hostname in {"localhost", "127.0.0.1", "0.0.0.0"}
+TIMEOUT_DESPERTAR = 60
 
 RUTA_PREDICCIONES = DIRECTORIO_SRC / "predicciones_historicas.csv"
 RUTA_METRICAS = DIRECTORIO_SRC / "metricas_drift.csv"
@@ -68,14 +73,36 @@ st.set_page_config(
 
 # Acceso a datos y a la API
 @st.cache_data(ttl=60)
-def consultar_api(ruta: str) -> dict | None:
+def _consultar_api(ruta: str, timeout: int) -> dict:
+    # Lanza la excepción en vez de devolver None: st.cache_data no cachea
+    # excepciones, así un fallo (API dormida) no queda guardado 60 segundos.
+    respuesta = requests.get(f"{API_URL}{ruta}", timeout=timeout)
+    respuesta.raise_for_status()
+    return respuesta.json()
+
+
+def consultar_api(ruta: str, timeout: int = 5) -> dict | None:
     """Consulta un endpoint GET de la API; None si el servicio no responde."""
     try:
-        respuesta = requests.get(f"{API_URL}{ruta}", timeout=5)
-        respuesta.raise_for_status()
-        return respuesta.json()
+        return _consultar_api(ruta, timeout)
     except requests.RequestException:
         return None
+
+
+def mostrar_api_no_disponible():
+    if API_LOCAL:
+        st.error(
+            f"No se pudo contactar la API en `{API_URL}`. Levántala con:\n\n"
+            "```bash\ncd src\nuvicorn model_deploy:app --reload\n```"
+        )
+        return
+    st.warning(
+        f"La API en `{API_URL}` todavía no responde. Corre en un plan "
+        "gratuito que se duerme tras un rato sin uso y puede tardar hasta un "
+        "minuto en despertar. Espera unos segundos y reintenta."
+    )
+    if st.button("Reintentar", type="primary"):
+        st.rerun()
 
 
 @st.cache_data
@@ -224,10 +251,7 @@ def pantalla_scoring():
 
     info = consultar_api("/modelo")
     if info is None:
-        st.error(
-            f"No se pudo contactar la API en `{API_URL}`. Levántala con:\n\n"
-            "```bash\ncd src\nuvicorn model_deploy:app --reload\n```"
-        )
+        mostrar_api_no_disponible()
         return
 
     col1, col2, col3 = st.columns(3)
@@ -586,7 +610,8 @@ def main():
     )
 
     st.sidebar.divider()
-    salud = consultar_api("/salud")
+    with st.spinner("Conectando con la API… si estaba dormida, puede tardar hasta un minuto."):
+        salud = consultar_api("/salud", timeout=TIMEOUT_DESPERTAR)
     if salud is not None:
         st.sidebar.success(f"API conectada · {salud.get('modelo')}")
     else:
